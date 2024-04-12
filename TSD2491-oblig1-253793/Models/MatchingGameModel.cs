@@ -24,7 +24,28 @@ namespace TSD2491_oblig1_253793.Models
                 "🐅", "🐅",
                 "🦈", "🦈",
             };
-
+        static List<string> weatherEmoji = new List<string>()
+            {
+                "⛅", "⛅",
+                "⛈️", "⛈️",
+                "🌤️", "🌤️",
+                "🌦️", "🌦️",
+                "🌨️", "🌨️",
+                "🌧️", "🌧️",
+                "☁️", "☁️",
+                "🌪️", "🌪️",
+            };
+        static List<string> randomEmoji = new List<string>()
+            {
+                "🎥", "🎥",
+                "🔌", "🔌",
+                "💻", "💻",
+                "💣", "💣",
+                "⚔️", "⚔️",
+                "💉", "💉",
+                "🍕", "🍕",
+                "🦇", "🦇",
+            };
 
         static Random random = new Random();
         public List<string> shuffledEmoji = pickRandomEmoji();

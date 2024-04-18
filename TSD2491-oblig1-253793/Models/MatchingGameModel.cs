@@ -9,9 +9,53 @@ namespace TSD2491_oblig1_253793.Models
 {
     public class MatchingGameModel
     {
+        
         //public List<string> ShuffledAnimals { get; private set; }
         public int MatchesFound = 0;
         public string GameStatus { get; private set; }
+        public string PlayerName { get; set; }
+        public int GamesPlayed { get; set; }
+
+        private static Dictionary<string, int> playerGameCounts = new Dictionary<string, int>();
+
+
+        public static List<KeyValuePair<string, int>> GetHighScoreList()
+        {
+            return playerGameCounts.ToList();
+        }
+
+
+        public void IncrementGamesPlayed()
+        {
+            GamesPlayed++;
+
+            // Ensure the playerGameCounts dictionary is initialized
+            if (playerGameCounts == null)
+                playerGameCounts = new Dictionary<string, int>();
+
+            // Update the games played count for the current player
+            if (!playerGameCounts.ContainsKey(PlayerName))
+            {
+                playerGameCounts[PlayerName] = 1; // New player, start count at 1
+            }
+            else
+            {
+                playerGameCounts[PlayerName]++; // Increment games played for existing player
+            }
+        }
+
+
+
+        // Method to get the GamesPlayed count for a specific player
+        public static int GetGamesPlayed(string playerName)
+        {
+            if (playerName != null && playerGameCounts.ContainsKey(playerName))
+            {
+                return playerGameCounts[playerName];
+            }
+            return 0; // Return 0 if the player has not played any games yet or if playerName is null
+        }
+
 
         public MatchingGameModel()
         {
@@ -73,12 +117,15 @@ namespace TSD2491_oblig1_253793.Models
             }
         }
 
+
         private void SetUpGame()
         {
+            
             Random random = new Random();
             shuffledEmoji = pickRandomEmoji();
 
             MatchesFound = 0;
+
 
         }
 
@@ -110,6 +157,8 @@ namespace TSD2491_oblig1_253793.Models
                 if (MatchesFound == 8)
                 {
                     GameStatus = "Game Complete";
+                    IncrementGamesPlayed();
+
                     SetUpGame();
                 }
             }

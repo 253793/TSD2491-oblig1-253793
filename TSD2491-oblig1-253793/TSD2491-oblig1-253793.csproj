@@ -7,4 +7,8 @@
     <RootNamespace>TSD2491_oblig1_253793</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+  </ItemGroup>
+
 </Project>

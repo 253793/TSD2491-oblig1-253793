@@ -51,3 +51,25 @@
 
 </div>
 
+@if (Model.MatchesFound == 0)
+{
+    <form asp-action="RegisterPlayer" method="post">
+        <div class="form-group">
+            <label for="PlayerName">Enter your name:</label>
+            <input type="text" class="form-control" id="PlayerName" name="PlayerName" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+}
+
+<div>
+    <h3>High Score List</h3>
+    <ul>
+        @foreach (var player in TSD2491_oblig1_253793.Models.MatchingGameModel.GetHighScoreList().OrderByDescending(p => p.Value))
+        {
+            <li>@player.Key: @player.Value games played</li>
+        }
+    </ul>
+</div>
+
+
